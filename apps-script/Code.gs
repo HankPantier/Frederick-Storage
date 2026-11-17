@@ -1,8 +1,8 @@
 /**
  * Frederick Storage — holiday giveaway entries → Google Sheet
  *
- * Lives inside the "Frederick Storage Giveaway Entries" spreadsheet owned by
- * frederickcostorage@gmail.com (Extensions › Apps Script). Deployed as a web app:
+ * A standalone Apps Script project owned by frederickcostorage@gmail.com that writes
+ * to the "Frederick Storage Giveaway Entries" spreadsheet (SHEET_ID below). Deployed as a web app:
  *   Execute as: Me   ·   Who has access: Anyone
  * The site's /assets/js/config.js holds the deployment's /exec URL.
  *
@@ -10,6 +10,7 @@
  * confirmation email to the person who entered (first entry only).
  */
 
+var SHEET_ID = '1-eZsDqvldHYdMzEol6ytrlQNzW-cwy8Ft_kYczBYfyI';
 var OWNER_EMAIL = 'frederickcostorage@gmail.com';
 var SHEET_NAME = 'Entries';
 var DRAW_DATE = 'January 5';
@@ -35,7 +36,7 @@ var COLUMNS = [
 /** Run once from the editor: creates the Entries tab and its header row. */
 function setup() {
   var sheet = getSheet_();
-  SpreadsheetApp.getActiveSpreadsheet().setSpreadsheetTimeZone('America/Denver');
+  SpreadsheetApp.openById(SHEET_ID).setSpreadsheetTimeZone('America/Denver');
   sheet.getRange(1, 1, 1, COLUMNS.length)
     .setValues([COLUMNS.map(function (c) { return c[1]; })])
     .setFontWeight('bold')
@@ -103,7 +104,7 @@ function doPost(e) {
 }
 
 function getSheet_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = SpreadsheetApp.openById(SHEET_ID);
   return ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 }
 
@@ -130,7 +131,7 @@ function notifyOwner_(entry) {
     'Email when open: ' + entry.opt_in,
     'Came from: ' + (entry.utm_source || 'direct / unknown'),
     '',
-    'All entries: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()
+    'All entries: ' + SpreadsheetApp.openById(SHEET_ID).getUrl()
   ];
   MailApp.sendEmail({
     to: OWNER_EMAIL,

@@ -24,8 +24,9 @@ Brand: Design System V2 (Logo A, P2 palette with Ink, Libre Franklin, self-hoste
 
 Do this while signed in to Google as **frederickcostorage@gmail.com**.
 
-1. Create a new Google Sheet named **Frederick Storage Giveaway Entries**.
-2. In the sheet, open **Extensions › Apps Script**. Delete what's in `Code.gs` and paste in the contents of `apps-script/Code.gs` from this repo. Save.
+1. The sheet already exists: **Frederick Storage Giveaway Entries** in frederickcostorage@gmail.com's Drive (its ID is `SHEET_ID` in `Code.gs`).
+2. Go to [script.google.com](https://script.google.com) and click **New project**. Name it **Frederick Storage Giveaway**, delete what's in `Code.gs`, and paste in the contents of `apps-script/Code.gs` from this repo. Save.
+   *If the editor shows "Sorry, unable to open the file at this time," Google is tripping over several signed-in accounts. Use a Chrome profile or incognito window where only frederickcostorage@gmail.com is signed in.*
 3. In the function menu at the top, choose **`setup`** and click **Run**. Google asks for permission: click **Review permissions**, choose the account, then **Advanced › Go to project (unsafe) › Allow**. That warning appears because this is your own unpublished script. Afterwards the sheet has an **Entries** tab with headers.
 4. Click **Deploy › New deployment**. Choose the type **Web app**, set **Execute as: Me** and **Who has access: Anyone**, then click **Deploy**. Copy the **Web app URL**, which ends in `/exec`.
 5. Paste that URL into `assets/js/config.js` as `endpoint`, then commit and push.
