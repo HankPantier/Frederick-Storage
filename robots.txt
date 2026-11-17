@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://frederick-storage.com/sitemap.xml
