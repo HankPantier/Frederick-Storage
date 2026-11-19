@@ -104,6 +104,7 @@ h1, h2, h3, p, ul { margin: 0; }
 .site-footer img { width: 150px; height: auto; }
 .site-footer p { font-size: 14px; }
 .site-footer a { color: var(--warm-white); }
+.foot-addr { font-style: normal; font-size: 14px; flex: 1 1 auto; }
 
 /* ---------- Inner pages (contact-us, rules) ---------- */
 .page { position: relative; overflow: hidden; }
