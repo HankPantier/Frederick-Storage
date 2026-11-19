@@ -94,12 +94,12 @@
     form.hidden = true;
     thanks.hidden = false;
     thanks.focus();
-    // For Google Tag Manager: trigger on the custom event "giveaway_entry".
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "giveaway_entry",
-      utm_source: form.elements.utm_source.value || "(none)",
-      unit_size: form.elements.size.value || "(not given)"
-    });
+    // Google Analytics (GA4) event, sent through the Google tag on the page.
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "giveaway_entry", {
+        utm_source: form.elements.utm_source.value || "(none)",
+        unit_size: form.elements.size.value || "(not given)"
+      });
+    }
   }
 })();
